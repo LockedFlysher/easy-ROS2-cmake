@@ -100,7 +100,7 @@ foreach(TARGET_NAME IN LISTS ALL_TARGETS)
 
         # 设置安装规则 / Set install rules
         install(TARGETS ${TARGET_NAME}
-                RUNTIME DESTINATION bin
+                RUNTIME DESTINATION lib/${PROJECT_NAME}/
         )
 
     elseif(${${TARGET_NAME}_TYPE} STREQUAL "LIBRARY")
