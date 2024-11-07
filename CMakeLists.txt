@@ -136,6 +136,8 @@ endforeach()
 install(DIRECTORY include/
         DESTINATION include/
 )
+install(DIRECTORY launch/
+DESTINATION share/${PROJECT_NAME}/)
 
 ######################################## ROS2包配置 / ROS2 Package Configuration ################
 # 导出包依赖 / Export package dependencies
