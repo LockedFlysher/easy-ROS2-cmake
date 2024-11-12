@@ -1,6 +1,7 @@
 # 设置CMake最低版本要求 / Set minimum CMake version
 cmake_minimum_required(VERSION 3.21)
 
+# build command ： colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -G Ninja --event-handlers console_direct+
 ##################################################################################################
 #################################### 用户配置区开始 / User Configuration Start #####################
 ##################################################################################################
@@ -133,10 +134,12 @@ endforeach()
 
 ######################################## 通用安装配置 / General Installation Configuration ######
 # 安装头文件 / Install header files
-install(DIRECTORY include/
-        DESTINATION include/
-)
-install(DIRECTORY launch/
+install(DIRECTORY
+        include
+        model
+        config
+        lib
+        launch
 DESTINATION share/${PROJECT_NAME}/)
 
 ######################################## ROS2包配置 / ROS2 Package Configuration ################
