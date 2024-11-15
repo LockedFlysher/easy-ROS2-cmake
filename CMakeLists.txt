@@ -135,7 +135,10 @@ endforeach()
 ######################################## 通用安装配置 / General Installation Configuration ######
 # 安装头文件 / Install header files
 install(DIRECTORY
-        include
+        include/
+        DESTINATION include)
+        
+install(DIRECTORY
         model
         config
         lib
