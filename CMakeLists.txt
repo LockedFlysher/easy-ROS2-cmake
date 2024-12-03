@@ -137,13 +137,25 @@ endforeach()
 install(DIRECTORY
         include/
         DESTINATION include)
-        
-install(DIRECTORY
-        model
-        config
-        lib
-        launch
-DESTINATION share/${PROJECT_NAME}/)
+
+# 获取当前目录下的所有文件夹
+file(GLOB SUBDIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *)
+
+# 遍历所有文件夹，排除特定目录
+foreach(SUBDIR ${SUBDIRS})
+    if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIR})
+        # 排除 src、include、build 等目录
+        if(NOT ${SUBDIR} STREQUAL "src" AND
+                NOT ${SUBDIR} STREQUAL "build" AND
+                NOT ${SUBDIR} STREQUAL ".git" AND
+                NOT ${SUBDIR} STREQUAL "install")
+            install(DIRECTORY
+                    ${SUBDIR}
+                    DESTINATION share/${PROJECT_NAME}/
+            )
+        endif()
+    endif()
+endforeach()
 
 ######################################## ROS2包配置 / ROS2 Package Configuration ################
 # 导出包依赖 / Export package dependencies
